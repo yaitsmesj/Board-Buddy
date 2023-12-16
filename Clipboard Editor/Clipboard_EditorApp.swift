@@ -6,12 +6,29 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct Clipboard_EditorApp: App {
     var body: some Scene {
-        WindowGroup {
+        Window("Main", id: "Main") {
             ContentView()
-        }
+        }.commands {
+            Menus()
+        }.modelContainer(Container.shared)
+        
+        // Editor Window
+        WindowGroup("Editor", for: TextData.ID.self) { $hashId in
+            EditorView(hashId: hashId ?? DataUtility.shared.defaultHash)
+        }.modelContainer(Container.shared)
+            .commandsRemoved()
+            .defaultSize(width: 400, height: 300)
+        
+        // Menu Bar
+        MenuBarExtra("Copy Paste", systemImage: "doc.on.doc") {
+            MenuBarView().modelContainer(Container.shared)
+        }.menuBarExtraStyle(.window)
+            .defaultPosition(.trailing)
+           // .modelContainer(ContainerInstance.shared)     // Error: Model Context is not being attached to MenuBarExtra
     }
 }
