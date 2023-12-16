@@ -24,7 +24,7 @@ struct DataItemView: View {
                     .foregroundColor(.primary)
                 
                 Text(data.text)
-                    .font(.subheadline)
+                    .font(.title3)
                     .lineLimit(3)
                     .foregroundColor(.primary)
                     .lineSpacing(3)
