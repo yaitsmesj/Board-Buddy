@@ -25,7 +25,7 @@ struct Clipboard_EditorApp: App {
             .defaultSize(width: 400, height: 300)
         
         // Menu Bar
-        MenuBarExtra("Copy Paste", systemImage: "doc.on.doc") {
+        MenuBarExtra("Copy Paste", systemImage: "pencil.and.list.clipboard") {
             MenuBarView().modelContainer(Container.shared)
         }.menuBarExtraStyle(.window)
             .defaultPosition(.trailing)
