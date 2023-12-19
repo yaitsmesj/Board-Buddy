@@ -28,4 +28,11 @@ class ClipboardManager {
     func getCount() -> Int {
         return pasteBoard.changeCount
     }
+    
+    func setString(text: String) {
+        pasteBoard.clearContents()                      // Need to clear pasteBoard before copied something there. It kinds of create an empty item                                                           on pasteBoard to put the item and it also increases the count.
+//        ClipboardMonitor.shared.lastKnownChangeCount += 1         // Increase count so ClipboardMonitor.checkForClipboardChanges doesn't run.
+
+        pasteBoard.setString(text, forType: .string)
+    }
 }

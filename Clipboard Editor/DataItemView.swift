@@ -14,21 +14,29 @@ struct DataItemView: View {
     
     @Bindable var data: TextData
     
+    @State private var isHovered = false
+    @State private var isPressed = false
+    
     var body: some View {
         
         HStack {
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 10) {
                 TextField("Title", text: $data.title)
                 //TODO: Add Text Limit
-                    .font(.headline)
-                    .foregroundColor(.primary)
-                
-                Text(data.text)
                     .font(.title3)
+                    .foregroundColor(.primary)
+                    .padding(.bottom, 5)
+                    .onChange(of: data.title) { oldValue, newValue in
+                        if newValue.count > 50 {
+                            data.title = String(newValue.prefix(50))
+                        }
+                    }
+                Text(data.text)
+                    .font(.body) 
                     .lineLimit(3)
                     .foregroundColor(.primary)
-                    .lineSpacing(3)
-                    .padding(.top, 2)
+                    .lineSpacing(4)
+                    .padding(.vertical, 5)
                     .truncationMode(.tail)
                 Spacer()
             }
@@ -56,12 +64,25 @@ struct DataItemView: View {
         }
         .padding(10)
         .background(Color(NSColor.windowBackgroundColor))
-        .cornerRadius(8)
-        .shadow(radius: 1)
+        //        .scaleEffect(isPressed ? 0.99 : 1.0)
+        .shadow(radius: 5)
+        .opacity(isHovered ? 0.8 : 1.0)
+//        .animation(.spring(response: 0.1, dampingFraction: 0.2), value: isPressed)
+        .onHover { hovering in
+            isHovered = hovering
+        }
+        .onTapGesture {
+//            isPressed = true
+            ClipboardMonitor.shared.copyTextToClipboard(text: data.text)
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.10) {
+//                isPressed = false
+//            }
+        }
     }
 }
 
+
 #Preview {
-    ContentView()
+    DataItemView(data: TextData(title: "Title Item" ,text: "Item"))
 }
 

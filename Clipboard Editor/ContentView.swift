@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
-    var clipBoardMonitor = ClipboardMonitor()
+    var clipBoardMonitor = ClipboardMonitor.shared
     @State private var searchText = ""
     @Environment(\.modelContext) private var modelContext
     
@@ -40,11 +40,21 @@ struct ContentView: View {
     
     func initializeClipboard() {
         // TODO: Initialize things
+//        NSApp.appearance = NSAppearance(named: .vibrantDark)
+        
     }
     
     
 }
 
 #Preview {
-    ContentView()
+    let config = ModelConfiguration(isStoredInMemoryOnly: true)
+    let container = try! ModelContainer(for: TextData.self, configurations: config)
+    
+    for i in 1..<10 {
+        let data = TextData(title: "Title \(i)", text: "Text \(i)")
+        container.mainContext.insert(data)
+    }
+    return ContentView().modelContainer(container)
+
 }

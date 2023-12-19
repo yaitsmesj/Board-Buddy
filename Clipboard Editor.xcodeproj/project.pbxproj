@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		444BCCD52B3226E300527AF8 /* MenuBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444BCCD42B3226E300527AF8 /* MenuBarItemView.swift */; };
 		44F978542B2D75BD0041E06E /* Clipboard_EditorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F978532B2D75BD0041E06E /* Clipboard_EditorApp.swift */; };
 		44F978562B2D75BD0041E06E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F978552B2D75BD0041E06E /* ContentView.swift */; };
 		44F978582B2D75BE0041E06E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44F978572B2D75BE0041E06E /* Assets.xcassets */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		444BCCD42B3226E300527AF8 /* MenuBarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarItemView.swift; sourceTree = "<group>"; };
 		44F978502B2D75BD0041E06E /* Clipboard Editor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Clipboard Editor.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		44F978532B2D75BD0041E06E /* Clipboard_EditorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clipboard_EditorApp.swift; sourceTree = "<group>"; };
 		44F978552B2D75BD0041E06E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -36,7 +38,7 @@
 		44F978672B2D7CE50041E06E /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
 		44F9786A2B2D7D7E0041E06E /* TextData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextData.swift; sourceTree = "<group>"; };
 		44F9786C2B2D7DA00041E06E /* DataUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataUtility.swift; sourceTree = "<group>"; };
-		44F9786E2B2D7DFC0041E06E /* DataItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataItemView.swift; sourceTree = "<group>"; };
+		44F9786E2B2D7DFC0041E06E /* DataItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataItemView.swift; sourceTree = "<group>"; usesTabs = 0; };
 		44F978712B2D7E2F0041E06E /* DataFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFilterView.swift; sourceTree = "<group>"; };
 		44F978732B2D7E5B0041E06E /* EditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorView.swift; sourceTree = "<group>"; };
 		44F978752B2D7EF60041E06E /* ClipboardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipboardManager.swift; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 		44F978472B2D75BD0041E06E = {
 			isa = PBXGroup;
 			children = (
+				444BCCD42B3226E300527AF8 /* MenuBarItemView.swift */,
 				44F978522B2D75BD0041E06E /* Clipboard Editor */,
 				44F978512B2D75BD0041E06E /* Products */,
 			);
@@ -190,6 +193,7 @@
 			files = (
 				44F978562B2D75BD0041E06E /* ContentView.swift in Sources */,
 				44F9787A2B2D7F300041E06E /* MenuBarView.swift in Sources */,
+				444BCCD52B3226E300527AF8 /* MenuBarItemView.swift in Sources */,
 				44F9786F2B2D7DFC0041E06E /* DataItemView.swift in Sources */,
 				44F978722B2D7E2F0041E06E /* DataFilterView.swift in Sources */,
 				44F978762B2D7EF60041E06E /* ClipboardManager.swift in Sources */,

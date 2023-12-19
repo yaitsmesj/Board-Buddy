@@ -9,11 +9,25 @@ import SwiftUI
 import SwiftData
 
 struct DataFilterView: View {
-    @Query(sort: [SortDescriptor(\TextData.copyTime, order: .reverse)]) var dataItems: [TextData]
+    @Query(sort: [SortDescriptor(\TextData.copyTime, order: .reverse)], animation: .smooth) var dataItems: [TextData]
+    private var isPinned: Bool
     
     var body: some View {
-        ForEach(dataItems, id: \.self) { data in
-            DataItemView(data: data)
+        if dataItems.isEmpty {
+            ContentUnavailableView {
+                if isPinned {
+                    Label("No Pinned Items", systemImage: "pin.fill")
+                        .font(.title2)
+                } else {
+                    Label("No Recent Items", systemImage: "clock.fill")
+                        .font(.title2)
+                }
+            }
+        } else {
+            ForEach(dataItems, id: \.self) { data in
+                DataItemView(data: data)
+                    .clipShape(.rect(cornerRadius: CGFloat(integerLiteral: 10)))
+            }
         }
     }
     
@@ -26,7 +40,8 @@ struct DataFilterView: View {
                                                      data.text.localizedStandardContains(searchString))
             }
             
-        }, sort: [sort])
+        }, sort: [sort], animation: .smooth)
+        self.isPinned = isPinned
     }
 }
 

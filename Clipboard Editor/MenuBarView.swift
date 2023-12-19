@@ -13,25 +13,26 @@ struct MenuBarView: View {
     
     @Query(filter: #Predicate<TextData> { item in
         item.isPinned
-    }, sort: [SortDescriptor(\TextData.copyTime, order: .reverse)]) var pinnedItems: [TextData]
+    }, sort: [SortDescriptor(\TextData.copyTime, order: .reverse)], animation: .smooth) var pinnedItems: [TextData]
     
     @Query(filter: #Predicate<TextData> { item in
         !item.isPinned
-    }, sort: [SortDescriptor(\TextData.copyTime, order: .reverse)]) var recentItems: [TextData]
-    
+    }, sort: [SortDescriptor(\TextData.copyTime, order: .reverse)], animation: .smooth) var recentItems: [TextData]
+        
     var body: some View {
             HStack {
                 VStack {
                     if pinnedItems.isEmpty {
                         ContentUnavailableView {
-                            Label("No pinned items", systemImage: "pin.fill")
-                                .font(.title2)
+                            Label("No Pinned Items", systemImage: "pin.fill")
+                                .font(.largeTitle)
                         }
+                        .scaleEffect(0.5)
                         
                     } else {
                         List(pinnedItems, id: \.self) { item in
-                            Text(item.text.trimmingCharacters(in: .whitespacesAndNewlines))
-                                .lineLimit(1)
+                            MenuBarItemView(text: item.text)
+                                .clipShape(.rect(cornerRadius: CGFloat(integerLiteral: 10)))
                         }
                         .frame(width: 250)
                         .fixedSize(horizontal: true, vertical: true)
@@ -41,14 +42,15 @@ struct MenuBarView: View {
                 VStack{
                     if recentItems.isEmpty {
                         ContentUnavailableView {
-                            Label("No recent items", systemImage: "clock.fill")
-                                .font(.title2)
+                            Label("No Recent Items", systemImage: "clock.fill")
+                                .font(.largeTitle)
                         }
+                        .scaleEffect(0.5)
                         
                     } else {
                         List(recentItems, id: \.self) { item in
-                            Text(item.text.trimmingCharacters(in: .whitespacesAndNewlines))
-                                .lineLimit(1)
+                            MenuBarItemView(text: item.text)
+                                .clipShape(.rect(cornerRadius: CGFloat(integerLiteral: 10)))
                         }
                         .frame(width: 250)
                         .fixedSize(horizontal: true, vertical: true)
@@ -59,7 +61,6 @@ struct MenuBarView: View {
             .fixedSize(horizontal: true, vertical: true)
             .padding()
         }
-
 }
 
 #Preview {

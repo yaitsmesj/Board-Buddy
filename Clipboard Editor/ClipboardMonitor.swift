@@ -9,16 +9,20 @@ import SwiftUI
 import SwiftData
 
 class ClipboardMonitor {
-    private var latestClipboardContent: String = ""
-    private var lastKnownChangeCount = ClipboardManager.shared.changeCount
+    static let shared = ClipboardMonitor()
+
+    var latestClipboardContent: String = ""
+    var lastKnownChangeCount = ClipboardManager.shared.changeCount
     private var clipboardCheckTimer: Task<Void, Never>?
+    
+    
     
     init() {
         clipboardCheckTimer = Task {
             while Task.isCancelled == false {
                 checkForClipboardChanges()
                 do {
-                    try await Task.sleep(nanoseconds: 1_000_000_000) // Sleep for 1 second
+                    try await Task.sleep(nanoseconds: 500_000_000) // Sleep for 1 second
                 } catch {
                     print("Error in Task.sleep")
                 }
@@ -37,6 +41,7 @@ class ClipboardMonitor {
                 }
             }
             self.lastKnownChangeCount = ClipboardManager.shared.changeCount
+            print("Count Updated: \(ClipboardManager.shared.changeCount)")
             print("Count Updated: \(self.lastKnownChangeCount)")
         }
     }
@@ -51,6 +56,11 @@ class ClipboardMonitor {
             print(data.id)
             Container.shared.mainContext.insert(data)
         }
+    }
+    
+    func copyTextToClipboard(text: String) {
+        print("copied \(text)")
+        ClipboardManager.shared.setString(text: text)
     }
     
     deinit {
