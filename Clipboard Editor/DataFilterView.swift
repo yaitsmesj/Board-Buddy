@@ -13,41 +13,50 @@ struct DataFilterView: View {
     private var isPinned: Bool
     @Binding var isEditing: Bool
     
+    private let cornerRadius: CGFloat = 10
+    
     var body: some View {
-        if dataItems.isEmpty {
-            ContentUnavailableView {
-                if isPinned {
-                    Label("No Pinned Items", systemImage: "pin.fill")
-                        .font(.title2)
-                } else {
-                    Label("No Recent Items", systemImage: "clock.fill")
-                        .font(.title2)
-                }
-            }
-        } else {
-            ForEach(dataItems, id: \.self) { data in
-                DataItemView(data: data, isEditing: $isEditing)
-                    .clipShape(.rect(cornerRadius: CGFloat(integerLiteral: 10)))
-                    .listRowSeparator(.hidden)
+        Group {
+            if dataItems.isEmpty {
+                emptyContentView
+            } else {
+                dataListView
             }
         }
     }
     
+    private var emptyContentView: some View {
+        ContentUnavailableView {
+            Label(isPinned ? "No Pinned Items" : "No Recent Items", systemImage: isPinned ? "pin.fill" : "clock.fill")
+                .font(.title2)
+        }
+    }
+    
+    private var dataListView: some View {
+        ForEach(dataItems, id: \.self) { data in
+            DataItemView(data: data, isEditing: $isEditing)
+                .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
+                .listRowSeparator(.hidden)
+        }
+    }
+    
     init(sort: SortDescriptor<TextData>, isPinned: Bool, searchString: String, isEditing: Binding<Bool>) {
-        _dataItems = Query(filter: #Predicate { data in
+        self.isPinned = isPinned
+        self._isEditing = isEditing
+        self._dataItems = Query(filter: createFilterPredicate(isPinned: isPinned, searchString: searchString), sort: [sort], animation: .smooth)
+    }
+    
+    private func createFilterPredicate(isPinned: Bool, searchString: String) -> Predicate<TextData> {
+        #Predicate { data in
             if searchString.isEmpty {
                 return data.isPinned == isPinned
             } else {
                 return data.isPinned == isPinned && (data.title.localizedStandardContains(searchString) ||
                                                      data.text.localizedStandardContains(searchString))
             }
-            
-        }, sort: [sort], animation: .smooth)
-        self.isPinned = isPinned
-        self._isEditing = isEditing
+        }
     }
 }
-
 #Preview {
     @State var isEditing: Bool = false
     return DataFilterView(sort: SortDescriptor(\TextData.copyTime), isPinned: true, searchString: "", isEditing: $isEditing)
