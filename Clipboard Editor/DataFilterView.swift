@@ -11,6 +11,7 @@ import SwiftData
 struct DataFilterView: View {
     @Query(sort: [SortDescriptor(\TextData.copyTime, order: .reverse)], animation: .smooth) var dataItems: [TextData]
     private var isPinned: Bool
+    @Binding var isEditing: Bool
     
     var body: some View {
         if dataItems.isEmpty {
@@ -25,13 +26,14 @@ struct DataFilterView: View {
             }
         } else {
             ForEach(dataItems, id: \.self) { data in
-                DataItemView(data: data)
+                DataItemView(data: data, isEditing: $isEditing)
                     .clipShape(.rect(cornerRadius: CGFloat(integerLiteral: 10)))
+                    .listRowSeparator(.hidden)
             }
         }
     }
     
-    init(sort: SortDescriptor<TextData>, isPinned: Bool, searchString: String) {
+    init(sort: SortDescriptor<TextData>, isPinned: Bool, searchString: String, isEditing: Binding<Bool>) {
         _dataItems = Query(filter: #Predicate { data in
             if searchString.isEmpty {
                 return data.isPinned == isPinned
@@ -42,9 +44,11 @@ struct DataFilterView: View {
             
         }, sort: [sort], animation: .smooth)
         self.isPinned = isPinned
+        self._isEditing = isEditing
     }
 }
 
 #Preview {
-    DataFilterView(sort: SortDescriptor(\TextData.copyTime), isPinned: true, searchString: "")
+    @State var isEditing: Bool = false
+    return DataFilterView(sort: SortDescriptor(\TextData.copyTime), isPinned: true, searchString: "", isEditing: $isEditing)
 }

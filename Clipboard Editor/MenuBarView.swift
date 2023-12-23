@@ -18,49 +18,59 @@ struct MenuBarView: View {
     @Query(filter: #Predicate<TextData> { item in
         !item.isPinned
     }, sort: [SortDescriptor(\TextData.copyTime, order: .reverse)], animation: .smooth) var recentItems: [TextData]
-        
+    
     var body: some View {
-            HStack {
-                VStack {
-                    if pinnedItems.isEmpty {
-                        ContentUnavailableView {
-                            Label("No Pinned Items", systemImage: "pin.fill")
-                                .font(.largeTitle)
-                        }
-                        .scaleEffect(0.5)
-                        
-                    } else {
-                        List(pinnedItems, id: \.self) { item in
-                            MenuBarItemView(text: item.text)
-                                .clipShape(.rect(cornerRadius: CGFloat(integerLiteral: 10)))
-                        }
-                        .frame(width: 250)
-                        .fixedSize(horizontal: true, vertical: true)
-                        Spacer()
+        HStack {
+            VStack {
+                if pinnedItems.isEmpty {
+                    ContentUnavailableView {
+                        Label("No Pinned Items", systemImage: "pin.fill")
+                            .font(.largeTitle)
                     }
-                }
-                VStack{
-                    if recentItems.isEmpty {
-                        ContentUnavailableView {
-                            Label("No Recent Items", systemImage: "clock.fill")
-                                .font(.largeTitle)
-                        }
-                        .scaleEffect(0.5)
-                        
-                    } else {
-                        List(recentItems, id: \.self) { item in
-                            MenuBarItemView(text: item.text)
-                                .clipShape(.rect(cornerRadius: CGFloat(integerLiteral: 10)))
-                        }
-                        .frame(width: 250)
-                        .fixedSize(horizontal: true, vertical: true)
-                        Spacer()
-                    }
+                    .scaleEffect(0.5)
+                    
+                } else {
+                    Section(
+                        header: Label("Pinned", systemImage: "pin.fill")
+                            .frame(maxWidth: .infinity, alignment: .leading)) {
+                                List(pinnedItems, id: \.self) { item in
+                                    MenuBarItemView(text: item.text)
+                                        .clipShape(.rect(cornerRadius: CGFloat(integerLiteral: 10)))
+                                }
+                                .frame(width: 250)
+                                .fixedSize(horizontal: true, vertical: true)
+                                .padding(-10)
+                            }
+                    Spacer()
                 }
             }
-            .fixedSize(horizontal: true, vertical: true)
-            .padding()
+            VStack{
+                if recentItems.isEmpty {
+                    ContentUnavailableView {
+                        Label("No Recent Items", systemImage: "clock.fill")
+                            .font(.largeTitle)
+                    }
+                    .scaleEffect(0.5)
+                    
+                } else {
+                    Section(
+                        header: Label("Recents", systemImage: "clock.fill")
+                            .frame(maxWidth: .infinity, alignment: .leading)) {
+                                List(recentItems, id: \.self) { item in
+                                    MenuBarItemView(text: item.text)
+                                        .clipShape(.rect(cornerRadius: CGFloat(integerLiteral: 10)))
+                                }
+                                .frame(width: 250)
+                                .fixedSize(horizontal: true, vertical: true)
+                                .padding(-10)
+                            }
+                    Spacer()
+                }
+            }
         }
+        .fixedSize(horizontal: true, vertical: true)
+        .padding()
+    }
 }
 
 #Preview {

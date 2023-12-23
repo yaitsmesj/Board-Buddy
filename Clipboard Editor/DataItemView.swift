@@ -4,7 +4,6 @@
 //
 //  Created by Suraj Jain on 16/12/23.
 //
-
 import SwiftUI
 import SwiftData
 
@@ -13,76 +12,84 @@ struct DataItemView: View {
     @Environment(\.openWindow) private var openWindow
     
     @Bindable var data: TextData
+    @Binding var isEditing: Bool
     
-    @State private var isHovered = false
-    @State private var isPressed = false
+    @State private var isSelected = false
+    @State private var isHovering = false
     
     var body: some View {
-        
         HStack {
-            VStack(alignment: .leading, spacing: 10) {
-                TextField("Title", text: $data.title)
-                //TODO: Add Text Limit
-                    .font(.title3)
-                    .foregroundColor(.primary)
-                    .padding(.bottom, 5)
-                    .onChange(of: data.title) { oldValue, newValue in
-                        if newValue.count > 50 {
-                            data.title = String(newValue.prefix(50))
-                        }
-                    }
-                Text(data.text)
-                    .font(.body) 
-                    .lineLimit(3)
-                    .foregroundColor(.primary)
-                    .lineSpacing(4)
-                    .padding(.vertical, 5)
-                    .truncationMode(.tail)
-                Spacer()
-            }
+            titleAndTextView
             Spacer()
-            
-            VStack(spacing: 10) {
-                Button(action: {
-                    openWindow(value: data.id)
-                }) {
-                    Image(systemName: "arrow.up.forward.bottomleading.rectangle")
-                }
-                
-                Button(action: {
-                    data.isPinned.toggle()
-                }) {
-                    Image(systemName: data.isPinned ? "pin.fill" : "pin")
-                }
-                
-                Button(action: {
-                    modelContext.delete(data)
-                }) {
-                    Image(systemName: "trash")
-                }
-            }
+            actionButtons
         }
         .padding(10)
-        .background(Color(NSColor.windowBackgroundColor))
-        //        .scaleEffect(isPressed ? 0.99 : 1.0)
+        .background(isSelected ? Color.blue : Color(NSColor.windowBackgroundColor))
         .shadow(radius: 5)
-        .opacity(isHovered ? 0.8 : 1.0)
-//        .animation(.spring(response: 0.1, dampingFraction: 0.2), value: isPressed)
-        .onHover { hovering in
-            isHovered = hovering
+        .opacity(isHovering ? 0.8 : 1.0)
+        .onHover(perform: setHoverState)
+        .onTapGesture(perform: handleTap)
+        .onChange(of: isEditing, resetSelection)
+    }
+    
+    private var titleAndTextView: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            TextField("Title", text: $data.title)
+                .font(.title3)
+                .foregroundColor(.primary)
+                .padding(.bottom, 5)
+                .onChange(of: data.title, enforceTitleLimit)
+            Text(data.text)
+                .font(.body)
+                .lineLimit(3)
+                .foregroundColor(.primary)
+                .lineSpacing(4)
+                .padding(.vertical, 5)
+                .truncationMode(.tail)
+            Spacer()
         }
-        .onTapGesture {
-//            isPressed = true
+    }
+    
+    private var actionButtons: some View {
+        VStack(spacing: 10) {
+            Button(action: { openWindow(value: data.id) }) {
+                Image(systemName: "arrow.up.forward.bottomleading.rectangle")
+            }
+            Button(action: { data.isPinned.toggle() }) {
+                Image(systemName: data.isPinned ? "pin.fill" : "pin")
+            }
+            Button(action: { modelContext.delete(data) }) {
+                Image(systemName: "trash")
+            }
+        }
+    }
+    
+    private func enforceTitleLimit(_ : String ,_ title: String) {
+        if title.count > 50 {
+            data.title = String(title.prefix(50))
+        }
+    }
+    
+    private func setHoverState(_ isHovering: Bool) {
+        self.isHovering = isHovering
+    }
+    
+    private func handleTap() {
+        if isEditing {
+            isSelected.toggle()
+        } else {
             ClipboardMonitor.shared.copyTextToClipboard(text: data.text)
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.10) {
-//                isPressed = false
-//            }
+        }
+    }
+    
+    private func resetSelection(_ : Bool, _ isEditing: Bool) {
+        if !isEditing {
+            isSelected = false
         }
     }
 }
 
-
 #Preview {
-    DataItemView(data: TextData(title: "Title Item" ,text: "Item"))
+    DataItemView(data: TextData(title: "Title Item" ,text: "Item"), isEditing: .constant(true))
 }
 

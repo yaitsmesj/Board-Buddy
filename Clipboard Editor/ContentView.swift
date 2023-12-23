@@ -11,6 +11,7 @@ import SwiftData
 struct ContentView: View {
     var clipBoardMonitor = ClipboardMonitor.shared
     @State private var searchText = ""
+    @State private var isEditing = false
     @Environment(\.modelContext) private var modelContext
     
     var body: some View {
@@ -25,7 +26,7 @@ struct ContentView: View {
         }
         .navigationTitle("All Things Clipboard")
         .toolbar {
-            Toolbar()
+            Toolbar(isEditing: $isEditing)
         }
         .searchable(text: $searchText)
         .onAppear(perform: initializeClipboard)
@@ -34,7 +35,7 @@ struct ContentView: View {
     private func dataSection(header: String, systemImage: String, isPinned: Bool) -> some View {
         Section(header: Label(header, systemImage: systemImage)) {
             DataFilterView(sort: SortDescriptor(\TextData.copyTime, order: .reverse),
-                           isPinned: isPinned, searchString: searchText)
+                           isPinned: isPinned, searchString: searchText, isEditing: $isEditing)
         }
     }
     
