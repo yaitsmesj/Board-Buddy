@@ -9,19 +9,18 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
-    var clipBoardMonitor = ClipboardMonitor.shared
+    var clipboardMonitor = ClipboardMonitor.shared
     @State private var searchText = ""
     @State private var isEditing = false
     @Environment(\.modelContext) private var modelContext
     
     var body: some View {
         HStack {
-            List {
-                dataSection(header: "Pinned", systemImage: "pin.fill", isPinned: true)
+            List{
+                clipboardSection(title: "Pinned", systemImage: "pin.fill", isPinned: true)
             }
-            
-            List {
-                dataSection(header: "Recents", systemImage: "clock.fill", isPinned: false)
+            List{
+                clipboardSection(title: "Recents", systemImage: "clock.fill", isPinned: false)
             }
         }
         .navigationTitle("All Things Clipboard")
@@ -32,8 +31,8 @@ struct ContentView: View {
         .onAppear(perform: initializeClipboard)
     }
     
-    private func dataSection(header: String, systemImage: String, isPinned: Bool) -> some View {
-        Section(header: Label(header, systemImage: systemImage)) {
+    private func clipboardSection(title: String, systemImage: String, isPinned: Bool) -> some View {
+        Section(header: Label(title, systemImage: systemImage)) {
             DataFilterView(sort: SortDescriptor(\TextData.copyTime, order: .reverse),
                            isPinned: isPinned, searchString: searchText, isEditing: $isEditing)
         }
@@ -41,7 +40,7 @@ struct ContentView: View {
     
     func initializeClipboard() {
         // TODO: Initialize things
-//        NSApp.appearance = NSAppearance(named: .vibrantDark)
+//        NSApp.appearance = NSAppearance(named: .darkAqua)
         
     }
     
@@ -57,5 +56,5 @@ struct ContentView: View {
         container.mainContext.insert(data)
     }
     return ContentView().modelContainer(container)
-
+    
 }

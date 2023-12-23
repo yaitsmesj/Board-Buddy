@@ -12,11 +12,12 @@ struct Toolbar: ToolbarContent {
     @Binding var isEditing: Bool
     
     var body: some ToolbarContent {
-        ToolbarItemGroup(placement: .automatic) {
+        ToolbarItem(placement: .principal) {
             Button {
                 isEditing.toggle()
             } label: {
-                Image(systemName: isEditing ? "checkmark.circle.fill" : "pencil")            }
+                Image(systemName: isEditing ? "checkmark.circle.fill" : "pencil")
+            }
             .help(isEditing ? "Done Editing" : "Edit")
         }
         ToolbarItemGroup(placement: .automatic) {
