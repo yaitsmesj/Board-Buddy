@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		44492FD62B37919C00E4BAAD /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44492FD52B37919C00E4BAAD /* Metal.framework */; };
 		444BCCD52B3226E300527AF8 /* MenuBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444BCCD42B3226E300527AF8 /* MenuBarItemView.swift */; };
-		44F978542B2D75BD0041E06E /* Clipboard_EditorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F978532B2D75BD0041E06E /* Clipboard_EditorApp.swift */; };
+		44F978542B2D75BD0041E06E /* Board_BuddyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F978532B2D75BD0041E06E /* Board_BuddyApp.swift */; };
 		44F978562B2D75BD0041E06E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F978552B2D75BD0041E06E /* ContentView.swift */; };
 		44F978582B2D75BE0041E06E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44F978572B2D75BE0041E06E /* Assets.xcassets */; };
 		44F9785B2B2D75BE0041E06E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44F9785A2B2D75BE0041E06E /* Preview Assets.xcassets */; };
@@ -30,11 +30,11 @@
 		44492FD52B37919C00E4BAAD /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		444BCCD42B3226E300527AF8 /* MenuBarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarItemView.swift; sourceTree = "<group>"; };
 		44F978502B2D75BD0041E06E /* Board Buddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Board Buddy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		44F978532B2D75BD0041E06E /* Clipboard_EditorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clipboard_EditorApp.swift; sourceTree = "<group>"; };
+		44F978532B2D75BD0041E06E /* Board_BuddyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board_BuddyApp.swift; sourceTree = "<group>"; };
 		44F978552B2D75BD0041E06E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		44F978572B2D75BE0041E06E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		44F9785A2B2D75BE0041E06E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		44F9785C2B2D75BE0041E06E /* Clipboard_Editor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Clipboard_Editor.entitlements; sourceTree = "<group>"; };
+		44F9785C2B2D75BE0041E06E /* Board_Buddy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Board_Buddy.entitlements; sourceTree = "<group>"; };
 		44F978632B2D7C750041E06E /* Menus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menus.swift; sourceTree = "<group>"; };
 		44F978652B2D7C7F0041E06E /* Toolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toolbar.swift; sourceTree = "<group>"; };
 		44F978672B2D7CE50041E06E /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
@@ -72,7 +72,7 @@
 			isa = PBXGroup;
 			children = (
 				444BCCD42B3226E300527AF8 /* MenuBarItemView.swift */,
-				44F978522B2D75BD0041E06E /* Clipboard Editor */,
+				44F978522B2D75BD0041E06E /* Board Buddy */,
 				44F978512B2D75BD0041E06E /* Products */,
 				44492FD42B37919C00E4BAAD /* Frameworks */,
 			);
@@ -86,15 +86,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		44F978522B2D75BD0041E06E /* Clipboard Editor */ = {
+		44F978522B2D75BD0041E06E /* Board Buddy */ = {
 			isa = PBXGroup;
 			children = (
 				44F978692B2D7D6A0041E06E /* Model */,
 				44F978622B2D7C5F0041E06E /* Controls */,
-				44F978532B2D75BD0041E06E /* Clipboard_EditorApp.swift */,
+				44F978532B2D75BD0041E06E /* Board_BuddyApp.swift */,
 				44F978552B2D75BD0041E06E /* ContentView.swift */,
 				44F978572B2D75BE0041E06E /* Assets.xcassets */,
-				44F9785C2B2D75BE0041E06E /* Clipboard_Editor.entitlements */,
+				44F9785C2B2D75BE0041E06E /* Board_Buddy.entitlements */,
 				44F978592B2D75BE0041E06E /* Preview Content */,
 				44F978672B2D7CE50041E06E /* Container.swift */,
 				44F9786C2B2D7DA00041E06E /* DataUtility.swift */,
@@ -105,7 +105,7 @@
 				44F978772B2D7F140041E06E /* ClipboardMonitor.swift */,
 				44F978792B2D7F300041E06E /* MenuBarView.swift */,
 			);
-			path = "Clipboard Editor";
+			path = "Board Buddy";
 			sourceTree = "<group>";
 		};
 		44F978592B2D75BE0041E06E /* Preview Content */ = {
@@ -209,7 +209,7 @@
 				44F9786F2B2D7DFC0041E06E /* DataItemView.swift in Sources */,
 				44F978722B2D7E2F0041E06E /* DataFilterView.swift in Sources */,
 				44F978762B2D7EF60041E06E /* ClipboardManager.swift in Sources */,
-				44F978542B2D75BD0041E06E /* Clipboard_EditorApp.swift in Sources */,
+				44F978542B2D75BD0041E06E /* Board_BuddyApp.swift in Sources */,
 				44F978782B2D7F140041E06E /* ClipboardMonitor.swift in Sources */,
 				44F9786B2B2D7D7E0041E06E /* TextData.swift in Sources */,
 				44F978682B2D7CE50041E06E /* Container.swift in Sources */,
@@ -347,11 +347,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
-				CODE_SIGN_ENTITLEMENTS = "Clipboard Editor/Clipboard_Editor.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Board Buddy/Board_Buddy.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Clipboard Editor/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Board Buddy/Preview Content\"";
 				DEVELOPMENT_TEAM = LMVYCW2T54;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -378,11 +378,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
-				CODE_SIGN_ENTITLEMENTS = "Clipboard Editor/Clipboard_Editor.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Board Buddy/Board_Buddy.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Clipboard Editor/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Board Buddy/Preview Content\"";
 				DEVELOPMENT_TEAM = LMVYCW2T54;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;

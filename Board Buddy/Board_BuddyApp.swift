@@ -1,6 +1,6 @@
 //
-//  Clipboard_EditorApp.swift
-//  Clipboard Editor
+//  Board_BuddyApp.swift
+//  Board Buddy
 //
 //  Created by Suraj Jain on 16/12/23.
 //
@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 @main
-struct Clipboard_EditorApp: App {
+struct Board_BuddyApp: App {
     var body: some Scene {
         Window("Main", id: "Main") {
             ContentView()

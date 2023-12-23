@@ -1,6 +1,6 @@
 //
 //  DataFilterView.swift
-//  Clipboard Editor
+//  Board Buddy
 //
 //  Created by Suraj Jain on 16/12/23.
 //

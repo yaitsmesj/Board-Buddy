@@ -1,6 +1,6 @@
 //
 //  MenuBarItemView.swift
-//  Clipboard Editor
+//  Board Buddy
 //
 //  Created by Suraj Jain on 20/12/23.
 //
