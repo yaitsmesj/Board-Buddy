@@ -10,21 +10,31 @@ import SwiftUI
 struct MenuBarItemView: View {
     var text: String
     @State private var isHovered = false
+
+    private let paddingSize: CGFloat = 5
+
     var body: some View {
         Text(text.trimmingCharacters(in: .whitespacesAndNewlines))
             .lineLimit(1)
-            .padding(5)
+            .padding(paddingSize)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .background(isHovered ? Color.accentColor : Color.clear)
-            .onHover(perform: { hovering in
-                isHovered = hovering
-            })
-            .onTapGesture {
-                ClipboardMonitor.shared.copyTextToClipboard(text: text)
-            }
+            .background(backgroundForHoverState)
+            .onHover(perform: handleHover)
+            .onTapGesture(perform: handleTap)
+    }
+
+    private var backgroundForHoverState: Color {
+        isHovered ? Color.accentColor : Color.clear
+    }
+
+    private func handleHover(_ isHovering: Bool) {
+        isHovered = isHovering
+    }
+
+    private func handleTap() {
+        ClipboardMonitor.shared.copyTextToClipboard(text: text)
     }
 }
-
 #Preview {
     MenuBarItemView(text: "Preview Text")
 }

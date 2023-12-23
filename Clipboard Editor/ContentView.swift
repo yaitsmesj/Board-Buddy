@@ -40,7 +40,7 @@ struct ContentView: View {
     
     func initializeClipboard() {
         // TODO: Initialize things
-//        NSApp.appearance = NSAppearance(named: .darkAqua)
+        //        NSApp.appearance = NSAppearance(named: .darkAqua)
         
     }
     
@@ -53,6 +53,9 @@ struct ContentView: View {
     
     for i in 1..<10 {
         let data = TextData(title: "Title \(i)", text: "Text \(i)")
+        if i.isMultiple(of: 2) {
+            data.isPinned = true
+        }
         container.mainContext.insert(data)
     }
     return ContentView().modelContainer(container)

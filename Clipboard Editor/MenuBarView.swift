@@ -10,66 +10,51 @@ import SwiftData
 
 struct MenuBarView: View {
     @Environment(\.openWindow) private var openWindow
-    
-    @Query(filter: #Predicate<TextData> { item in
-        item.isPinned
-    }, sort: [SortDescriptor(\TextData.copyTime, order: .reverse)], animation: .smooth) var pinnedItems: [TextData]
-    
-    @Query(filter: #Predicate<TextData> { item in
-        !item.isPinned
-    }, sort: [SortDescriptor(\TextData.copyTime, order: .reverse)], animation: .smooth) var recentItems: [TextData]
-    
+
+    @Query(filter: #Predicate<TextData> { $0.isPinned }, sort: [SortDescriptor(\TextData.copyTime, order: .reverse)], animation: .smooth) var pinnedItems: [TextData]
+    @Query(filter: #Predicate<TextData> { !$0.isPinned }, sort: [SortDescriptor(\TextData.copyTime, order: .reverse)], animation: .smooth) var recentItems: [TextData]
+
+    private let itemCornerRadius: CGFloat = 10
+    private let listWidth: CGFloat = 300
+
     var body: some View {
         HStack {
-            VStack {
-                if pinnedItems.isEmpty {
-                    ContentUnavailableView {
-                        Label("No Pinned Items", systemImage: "pin.fill")
-                            .font(.largeTitle)
-                    }
-                    .scaleEffect(0.5)
-                    
-                } else {
-                    Section(
-                        header: Label("Pinned", systemImage: "pin.fill")
-                            .frame(maxWidth: .infinity, alignment: .leading)) {
-                                List(pinnedItems, id: \.self) { item in
-                                    MenuBarItemView(text: item.text)
-                                        .clipShape(.rect(cornerRadius: CGFloat(integerLiteral: 10)))
-                                }
-                                .frame(width: 250)
-                                .fixedSize(horizontal: true, vertical: true)
-                                .padding(-10)
-                            }
-                    Spacer()
-                }
-            }
-            VStack{
-                if recentItems.isEmpty {
-                    ContentUnavailableView {
-                        Label("No Recent Items", systemImage: "clock.fill")
-                            .font(.largeTitle)
-                    }
-                    .scaleEffect(0.5)
-                    
-                } else {
-                    Section(
-                        header: Label("Recents", systemImage: "clock.fill")
-                            .frame(maxWidth: .infinity, alignment: .leading)) {
-                                List(recentItems, id: \.self) { item in
-                                    MenuBarItemView(text: item.text)
-                                        .clipShape(.rect(cornerRadius: CGFloat(integerLiteral: 10)))
-                                }
-                                .frame(width: 250)
-                                .fixedSize(horizontal: true, vertical: true)
-                                .padding(-10)
-                            }
-                    Spacer()
-                }
-            }
+            itemsSection(items: pinnedItems, title: "Pinned", icon: "pin.fill")
+            itemsSection(items: recentItems, title: "Recents", icon: "clock.fill")
         }
         .fixedSize(horizontal: true, vertical: true)
         .padding()
+    }
+
+    private func itemsSection(items: [TextData], title: String, icon: String) -> some View {
+        VStack {
+            if items.isEmpty {
+                emptyContentView(title: title, icon: icon)
+            } else {
+                itemsListView(items: items, title: title, icon: icon)
+            }
+            Spacer()
+        }
+    }
+
+    private func emptyContentView(title: String, icon: String) -> some View {
+        ContentUnavailableView {
+            Label("No \(title) items", systemImage: icon)
+                .font(.largeTitle)
+        }
+        .scaleEffect(0.5)
+    }
+
+    private func itemsListView(items: [TextData], title: String, icon: String) -> some View {
+        Section(header: Label(title, systemImage: icon).frame(maxWidth: .infinity, alignment: .leading)) {
+            List(items, id: \.self) { item in
+                MenuBarItemView(text: item.text)
+                    .clipShape(RoundedRectangle(cornerRadius: itemCornerRadius))
+            }
+            .frame(width: listWidth)
+            .fixedSize(horizontal: true, vertical: true)
+            .padding(-10)
+        }
     }
 }
 
