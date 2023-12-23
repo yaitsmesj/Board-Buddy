@@ -31,6 +31,7 @@ class DataUtility {
         descriptor.fetchLimit = 1
         do {
             let items = try Container.shared.mainContext.fetch(descriptor)
+            print("Returning Items: \(items)")
             return items.first
         } catch{
             fatalError("Error in Fetching TextData")
