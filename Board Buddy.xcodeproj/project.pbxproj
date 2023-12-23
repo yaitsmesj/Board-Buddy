@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		44492FD62B37919C00E4BAAD /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44492FD52B37919C00E4BAAD /* Metal.framework */; };
 		444BCCD52B3226E300527AF8 /* MenuBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444BCCD42B3226E300527AF8 /* MenuBarItemView.swift */; };
 		44F978542B2D75BD0041E06E /* Clipboard_EditorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F978532B2D75BD0041E06E /* Clipboard_EditorApp.swift */; };
 		44F978562B2D75BD0041E06E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F978552B2D75BD0041E06E /* ContentView.swift */; };
@@ -26,8 +27,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		44492FD52B37919C00E4BAAD /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		444BCCD42B3226E300527AF8 /* MenuBarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarItemView.swift; sourceTree = "<group>"; };
-		44F978502B2D75BD0041E06E /* Clipboard Editor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Clipboard Editor.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		44F978502B2D75BD0041E06E /* Board Buddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Board Buddy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		44F978532B2D75BD0041E06E /* Clipboard_EditorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clipboard_EditorApp.swift; sourceTree = "<group>"; };
 		44F978552B2D75BD0041E06E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		44F978572B2D75BE0041E06E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -51,25 +53,35 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44492FD62B37919C00E4BAAD /* Metal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		44492FD42B37919C00E4BAAD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				44492FD52B37919C00E4BAAD /* Metal.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		44F978472B2D75BD0041E06E = {
 			isa = PBXGroup;
 			children = (
 				444BCCD42B3226E300527AF8 /* MenuBarItemView.swift */,
 				44F978522B2D75BD0041E06E /* Clipboard Editor */,
 				44F978512B2D75BD0041E06E /* Products */,
+				44492FD42B37919C00E4BAAD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		44F978512B2D75BD0041E06E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				44F978502B2D75BD0041E06E /* Clipboard Editor.app */,
+				44F978502B2D75BD0041E06E /* Board Buddy.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -124,9 +136,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		44F9784F2B2D75BD0041E06E /* Clipboard Editor */ = {
+		44F9784F2B2D75BD0041E06E /* Board Buddy */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 44F9785F2B2D75BE0041E06E /* Build configuration list for PBXNativeTarget "Clipboard Editor" */;
+			buildConfigurationList = 44F9785F2B2D75BE0041E06E /* Build configuration list for PBXNativeTarget "Board Buddy" */;
 			buildPhases = (
 				44F9784C2B2D75BD0041E06E /* Sources */,
 				44F9784D2B2D75BD0041E06E /* Frameworks */,
@@ -136,9 +148,9 @@
 			);
 			dependencies = (
 			);
-			name = "Clipboard Editor";
+			name = "Board Buddy";
 			productName = "Clipboard Editor";
-			productReference = 44F978502B2D75BD0041E06E /* Clipboard Editor.app */;
+			productReference = 44F978502B2D75BD0041E06E /* Board Buddy.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -156,7 +168,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 44F9784B2B2D75BD0041E06E /* Build configuration list for PBXProject "Clipboard Editor" */;
+			buildConfigurationList = 44F9784B2B2D75BD0041E06E /* Build configuration list for PBXProject "Board Buddy" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -169,7 +181,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				44F9784F2B2D75BD0041E06E /* Clipboard Editor */,
+				44F9784F2B2D75BD0041E06E /* Board Buddy */,
 			);
 		};
 /* End PBXProject section */
@@ -344,6 +356,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "$(PRODUCT_NAME)";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -352,7 +365,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.tarbooz.Clipboard-Editor";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.tarbooz.Board-Buddy";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -374,6 +387,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "$(PRODUCT_NAME)";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -382,7 +396,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.tarbooz.Clipboard-Editor";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.tarbooz.Board-Buddy";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -392,7 +406,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		44F9784B2B2D75BD0041E06E /* Build configuration list for PBXProject "Clipboard Editor" */ = {
+		44F9784B2B2D75BD0041E06E /* Build configuration list for PBXProject "Board Buddy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				44F9785D2B2D75BE0041E06E /* Debug */,
@@ -401,7 +415,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		44F9785F2B2D75BE0041E06E /* Build configuration list for PBXNativeTarget "Clipboard Editor" */ = {
+		44F9785F2B2D75BE0041E06E /* Build configuration list for PBXNativeTarget "Board Buddy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				44F978602B2D75BE0041E06E /* Debug */,
